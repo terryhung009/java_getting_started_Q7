@@ -13,19 +13,12 @@ public class Main {
         for (int i = 0;i<word1.length();i++){
             targetWord[i] = word1.charAt(i);
         }
-        for(char b : targetWord){
-            System.out.print(b+ " ");
-        }
-        System.out.println("");
 
         char[] endWord = new char[word2.length()];
         for(int k=0;k<word2.length();k++){
             endWord[k] = word2.charAt(k);
         }
-        for(char a : endWord){
-            System.out.print(a+ " ");
-        }
-        System.out.println("");
+
 
         int z = 0;
         for(int l=endWord.length-1;l>=0;l--) {
@@ -37,52 +30,34 @@ public class Main {
 
         return true;
     }
-    /**   思考方式：
+
+    /**思考方式：
+     *建立變數j存入s1的長度-1 ->String s1最後的index值
+     *從String s2與 String s1最後一個字元開始比對，如果字元不同就return false
+     *比對到String s2 index值小於0，代表字串相同，return true
      *
      */
-//    public static boolean confirmEnding2(String word1,String word2) {
-//        retrun true;
-//    }
-
-    /**   思考方式：使用ArrayList，迴圈將每個字元加入元素
-     *
-     */
-
-    public static boolean confirmEnding3(String word1,String word2) {
-
-
-        ArrayList<Character> array = new ArrayList<Character>();
-
-        ArrayList<Character> endWord = new ArrayList<Character>();
-        for(int k = 0 ;k < word2.length() ;k++){
-            endWord.add(word2.charAt(k));
+    public static boolean confirmEnding2(String s1,String s2){
+        int j = s1.length()-1;
+        for(int i =s2.length()-1;i>=0;i--){
+            if(s2.charAt(i) != s1.charAt(j)){
+                return false;
+            }
+            j--;
         }
-
-        ArrayList<Character> targetWord = new ArrayList<Character>();
-        for(int i =0;i<word1.length();i++){
-            targetWord.add(word1.charAt(i));
-
-        }
-
-
-
-
-//        System.out.println(targetWord.get(targetWord.size()-1));
-        if(targetWord.get(targetWord.size()-1).equals(endWord.get(endWord.size()-1))){
-            return true;
-        }
-        return false;
+        return true;
     }
 
 
 
 
 
+
     public static void main(String[] args) {
-        System.out.println(confirmEnding1("Bastian", "n"));
-        System.out.println(confirmEnding1("Connor", "n"));
-        System.out.println(confirmEnding1("Open sesame", "same"));
-        System.out.println(confirmEnding1("Open sesame", "not"));
+        System.out.println(confirmEnding2("Bastian", "n"));
+        System.out.println(confirmEnding2("Connor", "n"));
+        System.out.println(confirmEnding2("Open sesame", "same"));
+        System.out.println(confirmEnding2("Open sesame", "not"));
 
     }
 }
