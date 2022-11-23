@@ -4,7 +4,10 @@ public class Main {
 
     public static boolean confirmEnding(String a,String b){
 
-        //solution 1
+        /**   solution 1
+         *      使用ArrayList
+         */
+
 //        ArrayList<Character> arr = new ArrayList<Character>();
 //        for(int k=0;k<b.length();k++){
 //            arr.add(b.charAt(k));
@@ -21,7 +24,11 @@ public class Main {
 //        }
 //        return false;
 
-        //solution 2
+        /**    solution 2
+         *      使用Array
+         *
+         */
+
 
         char[] word = new char[a.length()];
         for (int i = 0;i<a.length();i++){
