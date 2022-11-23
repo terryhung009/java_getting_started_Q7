@@ -2,55 +2,76 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static boolean confirmEnding(String a,String b){
+    /**思考方式：將迴圈將每個字元加入char array targetWord與
+     * char array endWord ，從最後一個字元比對endWord與targetWord array，
+     * 比到endWord的長度，如果不同就return false，比對到最後都相同，return true
+     *
+     */
+    public static boolean confirmEnding1(String word1,String word2){
 
-        /**   solution 1
-         *      使用ArrayList
-         */
+        char[] targetWord = new char[word1.length()];
+        for (int i = 0;i<word1.length();i++){
+            targetWord[i] = word1.charAt(i);
+        }
+        for(char b : targetWord){
+            System.out.print(b+ " ");
+        }
+        System.out.println("");
 
-//        ArrayList<Character> arr = new ArrayList<Character>();
-//        for(int k=0;k<b.length();k++){
-//            arr.add(b.charAt(k));
-//        }
-//
-//        ArrayList<Character> word = new ArrayList<Character>();
-//        for(int i =0;i<a.length();i++){
-//            word.add(a.charAt(i));
-//
-//        }
-////        System.out.println(word.get(word.size()-1));
-//        if(word.get(word.size()-1).equals(arr.get(arr.size()-1))){
-//                return true;
-//        }
-//        return false;
+        char[] endWord = new char[word2.length()];
+        for(int k=0;k<word2.length();k++){
+            endWord[k] = word2.charAt(k);
+        }
+        for(char a : endWord){
+            System.out.print(a+ " ");
+        }
+        System.out.println("");
 
-        /**    solution 2
-         *      使用Array
-         *
-         */
-
-
-        char[] word = new char[a.length()];
-        for (int i = 0;i<a.length();i++){
-            word[i] = a.charAt(i);
+        int z = 0;
+        for(int l=endWord.length-1;l>=0;l--) {
+            if (targetWord[targetWord.length - 1 - z] != endWord[l]) {
+                return false;
+            }
+            z++;
         }
 
-        char[] arr = new char[b.length()];
-        for(int k=0;k<b.length();k++){
-            arr[k] = b.charAt(k);
+        return true;
+    }
+    /**   思考方式：
+     *
+     */
+//    public static boolean confirmEnding2(String word1,String word2) {
+//        retrun true;
+//    }
+
+    /**   思考方式：使用ArrayList，迴圈將每個字元加入元素
+     *
+     */
+
+    public static boolean confirmEnding3(String word1,String word2) {
+
+
+        ArrayList<Character> array = new ArrayList<Character>();
+
+        ArrayList<Character> endWord = new ArrayList<Character>();
+        for(int k = 0 ;k < word2.length() ;k++){
+            endWord.add(word2.charAt(k));
+        }
+
+        ArrayList<Character> targetWord = new ArrayList<Character>();
+        for(int i =0;i<word1.length();i++){
+            targetWord.add(word1.charAt(i));
+
         }
 
 
-        if(word[word.length-1] == arr[arr.length-1]){
+
+
+//        System.out.println(targetWord.get(targetWord.size()-1));
+        if(targetWord.get(targetWord.size()-1).equals(endWord.get(endWord.size()-1))){
             return true;
         }
         return false;
-
-
-
-
-
-
     }
 
 
@@ -58,8 +79,10 @@ public class Main {
 
 
     public static void main(String[] args) {
-        System.out.println(confirmEnding("Bastian", "n"));
-        System.out.println(confirmEnding("Connor", "n"));
-        System.out.println(confirmEnding("Open sesame", "same"));
+        System.out.println(confirmEnding1("Bastian", "n"));
+        System.out.println(confirmEnding1("Connor", "n"));
+        System.out.println(confirmEnding1("Open sesame", "same"));
+        System.out.println(confirmEnding1("Open sesame", "not"));
+
     }
 }
